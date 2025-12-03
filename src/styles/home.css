@@ -387,8 +387,8 @@ nav {
   box-sizing: border-box;
 }
 
-/* Projects Sections */
-.third-section {
+/* Projects Section */
+.projects-section {
   background: linear-gradient(
     135deg,
     #f0a868 0%,
@@ -405,36 +405,108 @@ nav {
   padding: 4rem 0;
 }
 
-.fourth-section {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  width: 100vw;
-  min-width: 100vw;
-  position: relative;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
-  padding: 4rem 0;
-}
-
-.fifth-section {
-  background: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%);
-  width: 100vw;
-  min-width: 100vw;
-  position: relative;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
-  padding: 4rem 0;
-}
-
-.projects-content {
-  max-width: 1200px;
+.projects-container {
+  max-width: 1600px;
   margin: 0 auto;
   color: #fff;
   text-align: center;
-  padding: 0 2rem;
+  padding: 0 4rem;
+}
+
+.projects-carousel-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+  perspective: 1500px;
+  perspective-origin: center center;
+  padding: 2rem 0;
+  margin: 0 auto;
+}
+
+/* Projects Carousel Styles */
+.coverflow-carousel {
+  width: 350px;
+  height: 350px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.coverflow-item {
+  width: 350px;
+  height: 350px;
+  object-fit: contain;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  will-change: transform, opacity;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  display: block;
+  transform: translateZ(0);
+}
+
+.mask {
+  mask-image: linear-gradient(
+    to right,
+    transparent 5%,
+    black 20%,
+    black 80%,
+    transparent 95%
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 5%,
+    black 20%,
+    black 80%,
+    transparent 95%
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+@media (max-width: 600px) {
+  .coverflow-carousel {
+    width: 250px;
+    height: 250px;
+  }
+  .coverflow-item {
+    width: 250px;
+    height: 250px;
+    border-radius: 20px;
+  }
+  .projects-container {
+    padding: 0 1rem;
+  }
+  .projects-carousel-wrapper {
+    height: 350px;
+    overflow: hidden;
+  }
+  .mask {
+    mask-image: linear-gradient(
+      to right,
+      transparent 10%,
+      black 25%,
+      black 75%,
+      transparent 90%
+    );
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 10%,
+      black 25%,
+      black 75%,
+      transparent 90%
+    );
+  }
 }
 
 .projects-title {
@@ -549,12 +621,7 @@ nav {
 
 /* Proficiency Section */
 .proficiency-section {
-  background: linear-gradient(
-    135deg,
-    #f8fafc 0%,
-    #f1f5f9 50%,
-    #e2e8f0 100%
-  );
+  background: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%);
   width: 100vw;
   min-width: 100vw;
   position: relative;
@@ -587,7 +654,7 @@ nav {
   font-weight: 800;
   margin-bottom: 3rem;
   letter-spacing: 0.01em;
-  color: #999;
+  color: #fff;
 }
 
 .skills-grid {
@@ -613,27 +680,27 @@ nav {
 }
 
 .skill-name-1 {
-  color: #76cfc5;
+  color: #fff;
 }
 
 .skill-name-2 {
-  color: #ffb400;
+  color: #fff;
 }
 
 .skill-name-3 {
-  color: #ec6664;
+  color: #fff;
 }
 
 .skill-name-4 {
-  color: #ec6664;
+  color: #fff;
 }
 
 .skill-name-5 {
-  color: #76cfc5;
+  color: #fff;
 }
 
 .skill-name-6 {
-  color: #ffb400;
+  color: #fff;
 }
 
 .circular-progress {

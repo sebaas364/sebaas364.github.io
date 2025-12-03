@@ -1,0 +1,572 @@
+---
+---
+
+<section class="projects-section">
+  <div class="projects-container">
+    <h2 class="projects-title">Projects</h2>
+    <div class="projects-carousel-wrapper">
+      <div class="mask">
+        <div
+          role="region"
+          aria-roledescription="carousel"
+          class="coverflow-carousel"
+          draggable="false"
+          style="display:flex;position:relative;-webkit-touch-callout:none;-webkit-user-select:none;user-select:none;touch-action:pan-y"
+        >
+          <ul
+            role="group"
+            id="projects-carousel-ul"
+            style="display:flex;position:relative;list-style-type:none;padding:0;margin:0;justify-content:flex-start;flex-direction:row;gap:0px;align-items:center;width:100%;height:100%;max-height:100%;max-width:100%;"
+          >
+            <li
+              class="ticker-item"
+              aria-hidden="false"
+              aria-posinset="1"
+              aria-setsize="10"
+              style="flex-grow:0;flex-shrink:0;position:relative;height:fit-content;z-index:1000;transform:none"
+            >
+              <img
+                draggable="false"
+                src="/svg/project1.svg"
+                alt="Project 1"
+                class="coverflow-item"
+                style="transform:perspective(500px)"
+              />
+            </li>
+            <li
+              class="ticker-item"
+              aria-hidden="false"
+              aria-posinset="2"
+              aria-setsize="10"
+              style="flex-grow:0;flex-shrink:0;position:relative;height:fit-content;z-index:1000;transform:none"
+            >
+              <img
+                draggable="false"
+                src="/svg/project2.svg"
+                alt="Project 2"
+                class="coverflow-item"
+                style="transform:perspective(500px)"
+              />
+            </li>
+            <li
+              class="ticker-item"
+              aria-hidden="false"
+              aria-posinset="3"
+              aria-setsize="10"
+              style="flex-grow:0;flex-shrink:0;position:relative;height:fit-content;z-index:1000;transform:none"
+            >
+              <img
+                draggable="false"
+                src="/svg/project3.svg"
+                alt="Project 3"
+                class="coverflow-item"
+                style="transform:perspective(500px)"
+              />
+            </li>
+            <li
+              class="ticker-item"
+              aria-hidden="false"
+              aria-posinset="4"
+              aria-setsize="10"
+              style="flex-grow:0;flex-shrink:0;position:relative;height:fit-content;z-index:1000;transform:none"
+            >
+              <img
+                draggable="false"
+                src="/svg/project4.svg"
+                alt="Project 4"
+                class="coverflow-item"
+                style="transform:perspective(500px)"
+              />
+            </li>
+            <li
+              class="ticker-item"
+              aria-hidden="false"
+              aria-posinset="5"
+              aria-setsize="10"
+              style="flex-grow:0;flex-shrink:0;position:relative;height:fit-content;z-index:1000;transform:none"
+            >
+              <img
+                draggable="false"
+                src="/svg/project5.svg"
+                alt="Project 5"
+                class="coverflow-item"
+                style="transform:perspective(500px)"
+              />
+            </li>
+            <li
+              class="ticker-item"
+              aria-hidden="false"
+              aria-posinset="6"
+              aria-setsize="10"
+              style="flex-grow:0;flex-shrink:0;position:relative;height:fit-content;z-index:1000;transform:none"
+            >
+              <img
+                draggable="false"
+                src="/svg/project6.svg"
+                alt="Project 6"
+                class="coverflow-item"
+                style="transform:perspective(500px)"
+              />
+            </li>
+            <li
+              class="ticker-item"
+              aria-hidden="false"
+              aria-posinset="7"
+              aria-setsize="10"
+              style="flex-grow:0;flex-shrink:0;position:relative;height:fit-content;z-index:1000;transform:none"
+            >
+              <img
+                draggable="false"
+                src="/svg/project7.svg"
+                alt="Project 7"
+                class="coverflow-item"
+                style="transform:perspective(500px)"
+              />
+            </li>
+            <li
+              class="ticker-item"
+              aria-hidden="false"
+              aria-posinset="8"
+              aria-setsize="10"
+              style="flex-grow:0;flex-shrink:0;position:relative;height:fit-content;z-index:1000;transform:none"
+            >
+              <img
+                draggable="false"
+                src="/svg/project8.svg"
+                alt="Project 8"
+                class="coverflow-item"
+                style="transform:perspective(500px)"
+              />
+            </li>
+            <li
+              class="ticker-item"
+              aria-hidden="false"
+              aria-posinset="9"
+              aria-setsize="10"
+              style="flex-grow:0;flex-shrink:0;position:relative;height:fit-content;z-index:1000;transform:none"
+            >
+              <img
+                draggable="false"
+                src="/svg/project9.svg"
+                alt="Project 9"
+                class="coverflow-item"
+                style="transform:perspective(500px)"
+              />
+            </li>
+            <li
+              class="ticker-item"
+              aria-hidden="false"
+              aria-posinset="10"
+              aria-setsize="10"
+              style="flex-grow:0;flex-shrink:0;position:relative;height:fit-content;z-index:1000;transform:none"
+            >
+              <img
+                draggable="false"
+                src="/svg/project10.svg"
+                alt="Project 10"
+                class="coverflow-item"
+                style="transform:perspective(500px)"
+              />
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Projects Carousel - Coverflow Effect (完全参考 carousel-demo.astro)
+  (function initProjectsCarousel() {
+    const carouselUl = document.getElementById("projects-carousel-ul");
+    const carouselContainer = carouselUl?.parentElement; // .coverflow-carousel
+    const items = carouselUl?.querySelectorAll(".ticker-item");
+    const images = carouselUl?.querySelectorAll(".coverflow-item");
+
+    if (!carouselUl || !carouselContainer || !items || !images) {
+      console.error("Projects carousel elements not found");
+      return;
+    }
+
+    const itemWidth = 350; // SVG 图片宽度
+    const gap = 0;
+    const totalItems = items.length;
+    const cloneCount = totalItems;
+
+    // 创建克隆的 item（前面的克隆：整个列表）
+    for (let i = 0; i < cloneCount; i++) {
+      const originalItem = items[i];
+      const clone = originalItem.cloneNode(true);
+      clone.classList.add("clone-item");
+      clone.setAttribute("data-clone-index", i);
+      clone.setAttribute("data-original-index", i);
+      clone.setAttribute("aria-hidden", "true");
+      carouselUl.insertBefore(clone, items[0]);
+    }
+
+    // 创建克隆的 item（后面的克隆：整个列表）
+    for (let i = 0; i < cloneCount; i++) {
+      const originalItem = items[i];
+      const clone = originalItem.cloneNode(true);
+      clone.classList.add("clone-item");
+      clone.setAttribute("data-clone-index", i);
+      clone.setAttribute("data-original-index", i);
+      clone.setAttribute("aria-hidden", "true");
+      carouselUl.appendChild(clone);
+    }
+
+    // 重新获取所有 items（包括克隆的）
+    const allItems = carouselUl.querySelectorAll(".ticker-item");
+    const allImages = carouselUl.querySelectorAll(".coverflow-item");
+    const totalVirtualItems = totalItems * 3;
+
+    let currentX = 0;
+    let isDragging = false;
+    let startX = 0;
+    let startScrollLeft = 0;
+    let velocity = 0;
+    let lastX = 0;
+    let lastTime = 0;
+    let animationFrameId: number | null = null;
+    let dragDistance = 0;
+    let clickedItemIndex: number | null = null;
+    let autoPlayTimer: number | null = null;
+    let isAutoPlaying = true;
+    const autoPlayInterval = 4000;
+
+    function getOffset(itemIndex: number, scrollX: number) {
+      if (!carouselContainer) return 0;
+      const containerCenter = carouselContainer.offsetWidth / 2;
+      const itemStart = itemIndex * (itemWidth + gap);
+      const itemCenterX = itemStart + scrollX + itemWidth / 2;
+      return itemCenterX - containerCenter;
+    }
+
+    function lerp(
+      input: number,
+      inputRange: number[],
+      outputRange: (number | string)[]
+    ) {
+      if (input <= inputRange[0]) return outputRange[0];
+      if (input >= inputRange[inputRange.length - 1])
+        return outputRange[outputRange.length - 1];
+
+      for (let i = 0; i < inputRange.length - 1; i++) {
+        if (input >= inputRange[i] && input <= inputRange[i + 1]) {
+          const t =
+            (input - inputRange[i]) / (inputRange[i + 1] - inputRange[i]);
+          if (
+            typeof outputRange[i] === "string" &&
+            outputRange[i].includes("%")
+          ) {
+            const start = parseFloat(outputRange[i] as string);
+            const end = parseFloat(outputRange[i + 1] as string);
+            return start + (end - start) * t + "%";
+          }
+          return (
+            (outputRange[i] as number) +
+            ((outputRange[i + 1] as number) - (outputRange[i] as number)) * t
+          );
+        }
+      }
+      return outputRange[0];
+    }
+
+    function getTransformFromOffset(offset: number) {
+      const rotateY = lerp(offset, [-200, 0, 200], [20, 0, -20]);
+      const scale = lerp(offset, [-200, 0, 200], [0.7, 1, 0.7]);
+      const x = lerp(
+        offset,
+        [-800, -200, 200, 800],
+        ["100%", "0%", "0%", "-100%"]
+      );
+      const zIndex = Math.max(0, Math.round(1000 - Math.abs(offset)));
+      return { rotateY, scale, x, zIndex };
+    }
+
+    function updateTransforms() {
+      allItems.forEach((item, virtualIndex) => {
+        const img = item.querySelector(".coverflow-item") as HTMLElement;
+        if (!img) return;
+
+        const offset = getOffset(virtualIndex, currentX);
+        const { rotateY, scale, x, zIndex } = getTransformFromOffset(offset);
+
+        (item as HTMLElement).style.zIndex = zIndex.toString();
+
+        const xPx = x === "0%" ? 0 : (parseFloat(x as string) / 100) * itemWidth;
+
+        img.style.transform = `perspective(500px) translateX(${xPx}px) rotateY(${rotateY}deg) scale(${scale})`;
+      });
+    }
+
+    function getSnapPosition(virtualIndex: number) {
+      if (!carouselContainer) return 0;
+      const containerCenter = carouselContainer.offsetWidth / 2;
+      const itemStart = virtualIndex * (itemWidth + gap);
+      return containerCenter - itemStart - itemWidth / 2;
+    }
+
+    function checkLoopJump() {
+      if (isDragging || animationFrameId) return;
+
+      const singleSetWidth = totalItems * (itemWidth + gap);
+
+      if (currentX > -singleSetWidth / 2) {
+        currentX -= singleSetWidth;
+        carouselUl.style.transition = "none";
+        updateCarouselPosition();
+        setTimeout(() => {
+          carouselUl.style.transition = "";
+        }, 0);
+      }
+
+      const maxScroll = -singleSetWidth * 1.5;
+      if (currentX < maxScroll) {
+        currentX += singleSetWidth;
+        carouselUl.style.transition = "none";
+        updateCarouselPosition();
+        setTimeout(() => {
+          carouselUl.style.transition = "";
+        }, 0);
+      }
+    }
+
+    function findNearestItem() {
+      if (!carouselContainer) return totalItems;
+      const containerCenter = carouselContainer.offsetWidth / 2;
+      let nearestIndex = totalItems;
+      let minDistance = Infinity;
+
+      allItems.forEach((item, virtualIndex) => {
+        const itemStart = virtualIndex * (itemWidth + gap);
+        const itemCenterX = itemStart + currentX + itemWidth / 2;
+        const distance = Math.abs(itemCenterX - containerCenter);
+        if (distance < minDistance) {
+          minDistance = distance;
+          nearestIndex = virtualIndex;
+        }
+      });
+
+      return nearestIndex;
+    }
+
+    function goToItem(virtualIndex: number) {
+      const snapX = getSnapPosition(virtualIndex);
+      animateTo(snapX);
+    }
+
+    function nextItem() {
+      const currentVirtualIndex = findNearestItem();
+      const nextVirtualIndex = currentVirtualIndex + 1;
+      goToItem(nextVirtualIndex);
+    }
+
+    function prevItem() {
+      const currentVirtualIndex = findNearestItem();
+      const prevVirtualIndex = currentVirtualIndex - 1;
+      goToItem(prevVirtualIndex);
+    }
+
+    function startAutoPlay() {
+      if (autoPlayTimer) return;
+      autoPlayTimer = window.setInterval(() => {
+        if (!isDragging && !animationFrameId && isAutoPlaying) {
+          nextItem();
+        }
+      }, autoPlayInterval);
+    }
+
+    function stopAutoPlay() {
+      if (autoPlayTimer) {
+        clearInterval(autoPlayTimer);
+        autoPlayTimer = null;
+      }
+    }
+
+    function pauseAutoPlay() {
+      stopAutoPlay();
+      setTimeout(() => {
+        if (isAutoPlaying) {
+          startAutoPlay();
+        }
+      }, 5000);
+    }
+
+    function animateTo(targetX: number, duration = 450) {
+      const startX = currentX;
+      const startTime = performance.now();
+
+      function animate(currentTime: number) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+
+        const easeOutCubic = 1 - Math.pow(1 - progress, 3);
+        currentX = startX + (targetX - startX) * easeOutCubic;
+
+        updateCarouselPosition();
+
+        if (progress < 1) {
+          animationFrameId = requestAnimationFrame(animate);
+        } else {
+          animationFrameId = null;
+          checkLoopJump();
+        }
+      }
+
+      if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId);
+      }
+      animationFrameId = requestAnimationFrame(animate);
+    }
+
+    function updateCarouselPosition() {
+      carouselUl.style.transform = `translateX(${currentX}px)`;
+      updateTransforms();
+      checkLoopJump();
+    }
+
+    carouselUl.addEventListener("mousedown", (e) => {
+      const clickedElement = (e.target as HTMLElement).closest(".ticker-item");
+      if (clickedElement) {
+        clickedItemIndex = Array.from(allItems).indexOf(clickedElement);
+      } else {
+        clickedItemIndex = null;
+      }
+
+      isDragging = true;
+      startX = e.pageX;
+      startScrollLeft = currentX;
+      lastX = e.pageX;
+      lastTime = performance.now();
+      velocity = 0;
+      dragDistance = 0;
+      carouselUl.style.cursor = "grabbing";
+
+      pauseAutoPlay();
+
+      if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId);
+        animationFrameId = null;
+      }
+    });
+
+    carouselUl.addEventListener("mousemove", (e) => {
+      if (!isDragging) return;
+      e.preventDefault();
+      const now = performance.now();
+      const deltaTime = now - lastTime;
+      const deltaX = e.pageX - lastX;
+
+      if (deltaTime > 0) {
+        velocity = deltaX / deltaTime;
+      }
+
+      const x = e.pageX - startX;
+      dragDistance = Math.abs(x);
+      currentX = startScrollLeft + x;
+      updateCarouselPosition();
+
+      lastX = e.pageX;
+      lastTime = now;
+    });
+
+    carouselUl.addEventListener("mouseup", () => {
+      if (isDragging) {
+        isDragging = false;
+        carouselUl.style.cursor = "grab";
+
+        if (dragDistance < 5 && clickedItemIndex !== null) {
+          const offset = getOffset(clickedItemIndex, currentX);
+
+          if (offset < -50) {
+            prevItem();
+          } else if (offset > 50) {
+            nextItem();
+          } else {
+            goToItem(clickedItemIndex);
+          }
+        } else {
+          const nearestIndex = findNearestItem();
+          const snapX = getSnapPosition(nearestIndex);
+          animateTo(snapX);
+        }
+
+        dragDistance = 0;
+        clickedItemIndex = null;
+
+        pauseAutoPlay();
+      }
+    });
+
+    carouselUl.addEventListener("mouseleave", () => {
+      if (isDragging) {
+        isDragging = false;
+        carouselUl.style.cursor = "grab";
+      }
+    });
+
+    carouselUl.addEventListener("touchstart", (e) => {
+      isDragging = true;
+      startX = e.touches[0].pageX;
+      startScrollLeft = currentX;
+      lastX = e.touches[0].pageX;
+      lastTime = performance.now();
+      velocity = 0;
+
+      pauseAutoPlay();
+
+      if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId);
+        animationFrameId = null;
+      }
+    });
+
+    carouselUl.addEventListener("touchmove", (e) => {
+      if (!isDragging) return;
+      const now = performance.now();
+      const deltaTime = now - lastTime;
+      const deltaX = e.touches[0].pageX - lastX;
+
+      if (deltaTime > 0) {
+        velocity = deltaX / deltaTime;
+      }
+
+      const x = e.touches[0].pageX - startX;
+      currentX = startScrollLeft + x;
+      updateCarouselPosition();
+
+      lastX = e.touches[0].pageX;
+      lastTime = now;
+    });
+
+    carouselUl.addEventListener("touchend", () => {
+      if (isDragging) {
+        isDragging = false;
+
+        const nearestIndex = findNearestItem();
+        const snapX = getSnapPosition(nearestIndex);
+        animateTo(snapX);
+
+        pauseAutoPlay();
+      }
+    });
+
+    carouselUl.style.cursor = "grab";
+
+    allImages.forEach((img) => {
+      (img as HTMLElement).style.cursor = "pointer";
+    });
+
+    if (carouselContainer) {
+      const centerVirtualIndex = totalItems;
+      currentX = getSnapPosition(centerVirtualIndex);
+      updateCarouselPosition();
+    }
+
+    updateTransforms();
+
+    startAutoPlay();
+  })();
+</script>
+
