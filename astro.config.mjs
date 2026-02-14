@@ -7,6 +7,7 @@ import edgeoneAdapter from '@edgeone/astro';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://sebaas364.github.io',
+  output: 'static',
   adapter: edgeoneAdapter(),
   integrations: [react()]
 });
