@@ -8,6 +8,6 @@ import edgeoneAdapter from '@edgeone/astro';
 export default defineConfig({
   site: 'https://sebaas364.github.io',
   output: 'static',
-  adapter: edgeoneAdapter(),
   integrations: [react()]
 });
+
