@@ -27,4 +27,4 @@ pnpm-debug.log*
 
 # edgeone deployment folder
 .edgeone/
-package-lock.json
+
