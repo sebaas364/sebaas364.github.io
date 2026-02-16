@@ -15,7 +15,7 @@ export const siteConfig = {
   
   // Hero Section
   hero: {
-    prefix: "I am",
+    prefix: "I am", 
     name: "Sebastián Pérez Herrera",
     intro: "Soy un estudiante de ingeniería de sistemas, de la universidad El Bosque en su quinto semestre, apasionado por aprender cada día nuevos conceptos y tecnologías.\nBienvenido a mi portafolio!",
     avatar: "/image/Imagen_presentacion.png",
