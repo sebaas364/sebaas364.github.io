@@ -1,9 +1,9 @@
 // Site-wide configuration
 export const siteConfig = {
   // Site metadata
-  name: "Astro Blog",
-  title: "Astro Blog",
-  description: "A modern blog built with Astro",
+  name: "E-Portafolio",
+  title: "E-Portafolio",
+  description: "A modern portfolio built with Astro",
   
   // Navigation
   navigation: {
