@@ -143,23 +143,7 @@ const allTags = Array.from(
           <p class="posts-subtitle">{siteConfig.posts.subtitle}</p>
         </div>
 
-
-
-        <div class="tags-filter posts-content-animate">
-          <span class="tags-label">Filter by tags:</span>
-          <div class="tags-list">
-            {
-              allTags.map((tag) => (
-                <button
-                  class="tag-button"
-                  data-tag={tag.toLowerCase().replace(/\s+/g, "-")}
-                >
-                  {tag}
-                </button>
-              ))
-            }
-          </div>
-        </div>
+       
 
         <div class="posts-list posts-content-animate">
           {
