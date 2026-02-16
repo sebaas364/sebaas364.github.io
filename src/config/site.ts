@@ -24,17 +24,16 @@ export const siteConfig = {
       contactMe: "Contact Me",
     },
     socialLinks: [
-      { name: "Twitter", icon: "/svg/twitter.svg", url: "https://x.com/astrodotbuild" },
-      { name: "LinkedIn", icon: "/svg/linkedin.svg", url: "https://www.linkedin.com/company/astrodotbuild" },
-      { name: "Facebook", icon: "/svg/facebook.svg", url: "https://www.facebook.com/astrodotbuild" },
-      { name: "GitHub", icon: "/svg/github.svg", url: "https://github.com/tomcomtang/astro-cartoon-portfolio" },
+      { name: "LinkedIn", icon: "/svg/linkedin.svg", url: "hwww.linkedin.com/in/sebastian-perez-642403327" },
+      { name: "Facebook", icon: "/svg/instagram.svg", url: "https://www.instagram.com/sebssprz/" },
+      { name: "GitHub", icon: "/svg/github.svg", url: "https://github.com/sebaas364" },
     ],
   },
   
   // About Section
   about: {
-    title: "About Me",
-    text: "Hi, I'm Someone, a passionate web developer and blogger. I love exploring new technologies and sharing knowledge with the community. On this blog, you'll find my thoughts on web development, tutorials, and project showcases. I hope my content can inspire others in their coding journey.",
+    title: "Sobre mi",
+    text: "¡Hola!, Soy sebastian\n soy un apasionado estudiante de ingeniería de sistemas, que le gusta el desarrollo. Tengo una solida comprensión de los conceptos fundamentales de distintos temas respecto a mi carrera, lo que me permite diseñar y optimizar soluciones eficientes y escalables. Me interesa seguir aprendiendo y perfeccionando mis habilidades con el objetivo de poder contribuir en proyectos.",
   },
   
   // Contact Page
