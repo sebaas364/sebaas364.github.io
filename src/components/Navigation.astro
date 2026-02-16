@@ -27,12 +27,5 @@ const currentPath = Astro.url.pathname;
         >{siteConfig.navigation.contact}</a
       >
     </li>
-    <li>
-      <a
-        href="/comments"
-        class={`menu-link ${currentPath.startsWith("/comments") ? "active" : ""}`}
-        >{siteConfig.navigation.comments}</a
-      >
-    </li>
   </ul>
 </nav>
