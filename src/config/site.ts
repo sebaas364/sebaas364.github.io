@@ -68,7 +68,6 @@ export const siteConfig = {
       "I typically respond to messages within 24 hours during business days.",
       "Looking forward to hearing from you! 🚀",
     ],
-    messageButton: "💬 Leave a Message",
   },
   
   // Footer
