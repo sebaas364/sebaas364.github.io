@@ -24,7 +24,7 @@ export const siteConfig = {
       contactMe: "Contact Me",
     },
     socialLinks: [
-      { name: "LinkedIn", icon: "/svg/linkedin.svg", url: "hwww.linkedin.com/in/sebastian-perez-642403327" },
+      { name: "LinkedIn", icon: "/svg/linkedin.svg", url: "https://www.linkedin.com/in/sebastian-perez-642403327/" },
       { name: "Facebook", icon: "/svg/instagram.svg", url: "https://www.instagram.com/sebssprz/" },
       { name: "GitHub", icon: "/svg/github.svg", url: "https://github.com/sebaas364" },
     ],
