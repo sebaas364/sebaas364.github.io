@@ -16,9 +16,9 @@ export const siteConfig = {
   // Hero Section
   hero: {
     prefix: "I am",
-    name: "Someone Name",
-    intro: "I am a web developer and blogger, passionate about sharing knowledge and building cool things with code.\nWelcome to my portfolio blog!",
-    avatar: "/image/20943608.jpeg",
+    name: "Sebastián Pérez Herrera",
+    intro: "Soy un estudiante de ingeniería de sistemas, de la universidad El Bosque en su quinto semestre, apasionado por aprender cada día nuevos conceptos y tecnologías.\nBienvenido a mi portafolio!",
+    avatar: "/image/Imagen_presentacion.png",
     buttons: {
       viewPosts: "View Posts",
       contactMe: "Contact Me",
