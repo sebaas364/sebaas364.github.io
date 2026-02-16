@@ -38,31 +38,30 @@ export const siteConfig = {
   
   // Contact Page
   contact: {
-    title: "Get In Touch",
-    subtitle: "I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.",
+    title: "Contactame",
+    subtitle: "Estoy dispuesto a colaborar y aprender.",
     info: {
       email: {
         label: "Email",
-        value: "tom@example.com",
-        link: "mailto:tom@example.com",
+        value: "sperezhe@unbosque.edu.co",
+        link: "sperezhe@unbosque.edu.co",
       },
       phone: {
         label: "Phone",
-        value: "+1 (234) 567-890",
-        link: "tel:+1 (234) 567-890",
+        value: "+57 320 8223829",
+        link: "tel:+57 320 8223829",
       },
       location: {
         label: "Location",
-        value: "San Francisco, CA",
+        value: "Bogota D.C",
       },
     },
     followMe: {
       title: "Follow Me",
       links: [
-        { name: "Twitter", icon: "/svg/twitter.svg", url: "https://x.com/astrodotbuild" },
-        { name: "LinkedIn", icon: "/svg/linkedin.svg", url: "https://www.linkedin.com/company/astrodotbuild" },
-        { name: "Facebook", icon: "/svg/facebook.svg", url: "https://www.facebook.com/astrodotbuild" },
-        { name: "GitHub", icon: "/svg/github.svg", url: "https://github.com/tomcomtang/astro-cartoon-portfolio" },
+        { name: "LinkedIn", icon: "/svg/linkedin.svg", url: "https://www.linkedin.com/in/sebastian-perez-642403327/" },
+        { name: "Facebook", icon: "/svg/instagram.svg", url: "https://www.instagram.com/sebssprz/" },
+        { name: "GitHub", icon: "/svg/github.svg", url: "https://github.com/sebaas364" },
       ],
     },
     footerText: [
@@ -81,7 +80,7 @@ export const siteConfig = {
       { text: "Sitemap", url: "#" },
     ],
     github: {
-      text: "Star this project on Github",
+      text: "Utilizar plantilla",
       url: "https://github.com/tomcomtang/astro-cartoon-portfolio",
     },
   },
