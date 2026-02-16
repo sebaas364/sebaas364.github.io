@@ -8,7 +8,7 @@ export const siteConfig = {
   // Navigation
   navigation: {
     home: "Home",
-    posts: "Posts",
+    posts: "Evidencias",
     contact: "Contact",
     comments: "Comments",
   },
@@ -20,7 +20,6 @@ export const siteConfig = {
     intro: "Soy un estudiante de ingeniería de sistemas, de la universidad El Bosque en su quinto semestre, apasionado por aprender cada día nuevos conceptos y tecnologías.\nBienvenido a mi portafolio!",
     avatar: "/image/Imagen_presentacion.png",
     buttons: {
-      viewPosts: "View Posts",
       contactMe: "Contact Me",
     },
     socialLinks: [
@@ -86,8 +85,8 @@ export const siteConfig = {
   
   // Posts Page
   posts: {
-    title: "Blog Posts",
-    subtitle: "Explore our latest articles on web development, design, and technology",
+    title: "Evidencias",
+    subtitle: "Aqui se evidenciara lo realizado durante la clase bases de datos 1.",
     searchPlaceholder: "Search posts...",
   },
   
