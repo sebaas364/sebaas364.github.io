@@ -50,8 +50,7 @@ const posts = await Promise.all(
   })
 );
 
-// Sort by date (oldest first so models appear in order)
-posts.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+
 
 // Group posts by category tag
 const panels = [
