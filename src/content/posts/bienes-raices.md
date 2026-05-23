@@ -23,4 +23,4 @@ Constrúyase un diagrama E-R. Indique cuáles son las entidades identificadas co
 
 ## Archivo del ejercicio
 
-Ingreso al ejercicio : [Ver archivo](https://drive.google.com/file/d/1YpmDWwmJXPEd2WbUVHgJ1BTDI--HAjXv/view?usp=sharing)
+Ingreso al ejercicio : [Ver archivo](https://drive.google.com/file/d/1SyZ9W4gJLD867d_5HIoYrtrg5rY3jqKM/view?usp=sharing)
