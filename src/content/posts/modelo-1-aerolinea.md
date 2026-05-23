@@ -1,5 +1,7 @@
 ---
 title: "Modelo 1 — Aerolínea"
+date: "2/1/2025"
+author: "Sebastián Pérez Herrera"
 tags: ["Modelado"]
 readTime: "3 min read"
 excerpt: "Modelo entidad-relación para el sistema de gestión de una aerolínea con aviones, pilotos, tripulación y vuelos."

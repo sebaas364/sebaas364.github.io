@@ -1,5 +1,7 @@
 ---
 title: "Modelo 6 — Bienes Raíces"
+date: "4/15/2025"
+author: "Sebastián Pérez Herrera"
 tags: ["Modelado"]
 readTime: "4 min read"
 excerpt: "Modelo ER para una empresa de bienes raíces que gestiona casas en venta, agentes y clientes con sus preferencias."
