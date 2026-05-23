@@ -19,7 +19,7 @@ Constrúyase un diagrama E-R. Indique cuáles son las entidades identificadas co
 
 ## Modelo Entidad-Relación
 
-*Diagrama próximamente.*
+![Modelo ER Bienes Raíces](/image/bienesRaices.png)
 
 ## Archivo del ejercicio
 

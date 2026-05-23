@@ -20,5 +20,5 @@ Una aerolínea requiere una base de datos relacional para registrar sus operacio
 
 ## Modelo Entidad-Relación
 
-*Diagrama próximamente.*
+![Modelo ER Aerolínea](/image/aerolinea.drawio.PNG)
 

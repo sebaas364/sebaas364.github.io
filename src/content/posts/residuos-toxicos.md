@@ -33,7 +33,7 @@ Se desea abordar la problemática ambiental de los residuos tóxicos y peligroso
 
 ## Modelo Entidad-Relación
 
-*Diagrama próximamente.*
+![Modelo ER Residuos Tóxicos](/image/residuos.drawio.png)
 
 ## Archivo del ejercicio
 

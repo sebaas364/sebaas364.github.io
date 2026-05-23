@@ -13,7 +13,7 @@ El enunciado del problema se presenta dividido en tres partes. Ver imágenes adj
 
 ## Modelo Entidad-Relación
 
-*Diagrama próximamente.*
+![Modelo ER Employees](/image/employees.drawio.png)
 
 ## Archivo del ejercicio
 

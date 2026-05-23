@@ -29,7 +29,7 @@ Eat'n Go, una empresa internacional dedicada a la comercialización de comidas r
 
 ## Modelo Entidad-Relación
 
-*Diagrama próximamente.*
+![Modelo ERE Comidas a Domicilio](/image/pizza.drawio.png)
 
 ## Archivo del ejercicio
 
