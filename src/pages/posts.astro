@@ -22,63 +22,19 @@ function formatDate(dateString: string): string {
   });
 }
 
-// Extract plain text from markdown content
-function extractExcerptFromMarkdown(
-  content: string,
-  maxLength: number = 300
-): string {
-  // Remove markdown syntax
-  let text = content
-    .replace(/^#+\s+/gm, "") // Remove headers
-    .replace(/\[([^\]]+)\]\([^\)]+\)/g, "$1") // Remove links, keep text
-    .replace(/\*\*([^\*]+)\*\*/g, "$1") // Remove bold
-    .replace(/\*([^\*]+)\*/g, "$1") // Remove italic
-    .replace(/`([^`]+)`/g, "$1") // Remove inline code
-    .replace(/```[\s\S]*?```/g, "") // Remove code blocks
-    .replace(/\n+/g, " ") // Replace newlines with space
-    .trim();
-
-  // Get first maxLength characters
-  if (text.length > maxLength) {
-    text = text.substring(0, maxLength);
-    // Try to cut at a sentence boundary
-    const lastPeriod = text.lastIndexOf(".");
-    const lastSpace = text.lastIndexOf(" ");
-    const cutPoint = lastPeriod > maxLength * 0.7 ? lastPeriod + 1 : lastSpace;
-    if (cutPoint > maxLength * 0.7) {
-      text = text.substring(0, cutPoint);
-    }
-    text += "...";
-  }
-
-  return text;
-}
-
 // Transform content collection posts to match the expected format
 const posts = await Promise.all(
   allPosts.map(async (post: any) => {
-    // Get slug from post - try multiple fallbacks
-    // In Astro, post.slug should be available, but if not, extract from id
     let slug = post.slug;
     if (!slug && post.id) {
-      // Extract slug from id (e.g., "posts/my-post.md" -> "my-post")
       slug = post.id.split("/").pop()?.replace(/\.md$/, "") || "";
     }
-    if (!slug) {
-      console.warn("Post missing slug:", post);
-    }
 
-    // Try to get excerpt from frontmatter first
     let excerpt = post.data.excerpt;
-
-    // If no excerpt in frontmatter, generate a default excerpt from title
     if (!excerpt) {
-      // In Astro 6.0, post.body is no longer available
-      // Use a default excerpt based on title or provide a generic message
-      excerpt = `Read more about ${post.data.title}...`;
+      excerpt = `Leer más sobre ${post.data.title}...`;
     }
 
-    // Get image from frontmatter, fallback to mapping, then default
     const image = post.data.image || postImages[slug] || defaultPostImage;
 
     return {
@@ -94,27 +50,18 @@ const posts = await Promise.all(
   })
 );
 
-// Sort by date (newest first)
-posts.sort((a, b) => {
-  return new Date(b.date).getTime() - new Date(a.date).getTime();
-});
+// Sort by date (oldest first so models appear in order)
+posts.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 
-// Group posts by date
-const groupedPosts = posts.reduce(
-  (acc, post) => {
-    if (!acc[post.date]) {
-      acc[post.date] = [];
-    }
-    acc[post.date].push(post);
-    return acc;
-  },
-  {} as Record<string, typeof posts>
-);
+// Group posts by category tag
+const panels = [
+  { title: "Modelado",      tag: "Modelado" },
+  { title: "Normalización", tag: "Normalización" },
+  { title: "SQL",           tag: "SQL" },
+  { title: "Proyecto",      tag: "Proyecto" },
+];
 
-// Extract all unique tags from posts
-const allTags = Array.from(
-  new Set(posts.flatMap((post) => post.tags.map((tag: string) => tag)))
-).sort();
+const postsByTag = (tag: string) => posts.filter(p => p.tags.includes(tag));
 ---
 
 <html lang="en">
@@ -125,107 +72,157 @@ const allTags = Array.from(
     <meta name="generator" content={Astro.generator} />
     <title>Evidencias</title>
     <script>
-      // Disable browser scroll restoration and ensure page starts at top
       if ("scrollRestoration" in history) {
         history.scrollRestoration = "manual";
       }
-      // Immediately scroll to top on page load
       window.scrollTo(0, 0);
     </script>
   </head>
   <body>
     <Navigation />
 
-  <main class="posts-page">
-    <div class="posts-container page-content">
-      <div class="posts-header posts-header-animate">
-        <h1 class="posts-title">{siteConfig.posts.title}</h1>
-        <p class="posts-subtitle">{siteConfig.posts.subtitle}</p>
-      </div>
+    <main class="posts-page">
+      <div class="posts-container page-content">
+        <div class="posts-header posts-header-animate">
+          <h1 class="posts-title">{siteConfig.posts.title}</h1>
+          <p class="posts-subtitle">{siteConfig.posts.subtitle}</p>
+        </div>
 
-      <div class="posts-list posts-content-animate">
-        {[
-          { title: "Modelado", slug: "modelado" },
-          { title: "Normalización", slug: "normalizacion" },
-          { title: "SQL", slug: "sql" },
-          { title: "Proyecto", slug: "proyecto" }
-        ].map((panel) => (
-          <div class="date-group">
-            <div class="date-card">
-              <article class="post-item">
-                <div class="post-summary">
-                  <div class="title-icon-left" />
-                  
-                  <h3 class="post-title">
-                    <a
-                      href={`/posts/${panel.slug}`}
-                      class="post-title-link"
-                    >
-                      {panel.title}
-                    </a>
-                    <div class="title-icon-right" />
-                  </h3>
+        <div class="posts-list posts-content-animate">
+          {panels.map((panel) => (
+            <div class="date-group">
+              <div class="date-card">
+                <article class="post-item">
+                  <div class="post-summary">
+                    <div class="title-icon-left" />
+                    <h3 class="post-title">
+                      <span class="post-title-text">{panel.title}</span>
+                      <div class="title-icon-right" />
+                    </h3>
+                    <button class="post-toggle" aria-label="Toggle post details">
+                      <span class="post-arrow">↓</span>
+                    </button>
+                  </div>
 
-                  <button
-                    class="post-toggle"
-                    aria-label="Toggle post details"
-                  >
-                    <span class="post-arrow">↓</span>
-                  </button>
-                </div>
-              </article>
+                  <div class="post-details">
+                    <div class="panel-posts-list">
+                      {postsByTag(panel.tag).map((post) => (
+                        <div class="panel-post-entry">
+                          <div class="panel-post-header">
+                            <a href={`/posts/${post.slug}`} class="panel-post-title">
+                              {post.title}
+                            </a>
+                            <span class="panel-post-readtime">{post.readTime}</span>
+                          </div>
+                          <p class="panel-post-excerpt">{post.excerpt}</p>
+                          <a href={`/posts/${post.slug}`} class="panel-post-link">Ver evidencia →</a>
+                        </div>
+                      ))}
+                      {postsByTag(panel.tag).length === 0 && (
+                        <p class="panel-empty">Contenido próximamente.</p>
+                      )}
+                    </div>
+                  </div>
+                </article>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
-    </div>
-  </main>
-
+    </main>
 
     <Footer />
   </body>
 </html>
 
+<style>
+  .panel-posts-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    padding: 0.5rem 1rem 0.25rem;
+  }
+
+  .panel-post-entry {
+    border-left: 3px solid #76cfc5;
+    padding-left: 1rem;
+  }
+
+  .panel-post-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.3rem;
+  }
+
+  .panel-post-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #2d3748;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .panel-post-title:hover {
+    color: #76cfc5;
+  }
+
+  .panel-post-readtime {
+    font-size: 0.8rem;
+    color: #a0aec0;
+    flex-shrink: 0;
+  }
+
+  .panel-post-excerpt {
+    font-size: 0.9rem;
+    color: #718096;
+    line-height: 1.6;
+    margin: 0 0 0.4rem;
+  }
+
+  .panel-post-link {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: #76cfc5;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .panel-post-link:hover {
+    color: #5bc0ae;
+  }
+
+  .panel-empty {
+    color: #a0aec0;
+    font-size: 0.95rem;
+    font-style: italic;
+    padding: 0.5rem 1rem;
+  }
+</style>
+
 <script>
-  // Ensure scroll position is at top after DOM loads
   document.addEventListener("DOMContentLoaded", () => {
     window.scrollTo(0, 0);
-    setTimeout(() => {
-      window.scrollTo(0, 0);
-    }, 0);
-  });
-  // Also ensure on page show (handles back/forward navigation)
-  window.addEventListener("pageshow", (event) => {
-    if (event.persisted) {
-      window.scrollTo(0, 0);
-    }
-  });
+    setTimeout(() => { window.scrollTo(0, 0); }, 0);
 
-  // Initialize page transition animations
-  document.addEventListener("DOMContentLoaded", () => {
-    // Trigger page content animation
     const pageContent = document.querySelector(".page-content");
     if (pageContent) {
-      requestAnimationFrame(() => {
-        pageContent.classList.add("visible");
-      });
+      requestAnimationFrame(() => { pageContent.classList.add("visible"); });
     }
 
-    // Trigger header animation
     const header = document.querySelector(".posts-header-animate");
     if (header) {
-      requestAnimationFrame(() => {
-        header.classList.add("visible");
-      });
+      requestAnimationFrame(() => { header.classList.add("visible"); });
     }
 
-    // Trigger content animations
-    const contentElements = document.querySelectorAll(".posts-content-animate");
-    contentElements.forEach((element) => {
-      requestAnimationFrame(() => {
-        element.classList.add("visible");
-      });
+    document.querySelectorAll(".posts-content-animate").forEach((element) => {
+      requestAnimationFrame(() => { element.classList.add("visible"); });
     });
+  });
+
+  window.addEventListener("pageshow", (event) => {
+    if (event.persisted) { window.scrollTo(0, 0); }
   });
 
   // Expand/collapse behavior
@@ -240,131 +237,25 @@ const allTags = Array.from(
         postItem.classList.toggle("expanded");
         const arrow = toggle.querySelector(".post-arrow");
         if (arrow) {
-          arrow.textContent = postItem.classList.contains("expanded")
-            ? "↑"
-            : "↓";
+          arrow.textContent = postItem.classList.contains("expanded") ? "↑" : "↓";
         }
       }
     });
   });
 
-  // Click row to expand/collapse
   postSummaries.forEach((summary) => {
     summary.addEventListener("click", (e) => {
-      // Ignore clicks on the title link
-      if ((e.target as HTMLElement).closest(".post-title-link")) {
-        return;
-      }
-      // Ignore clicks on the toggle button
-      if ((e.target as HTMLElement).closest(".post-toggle")) {
-        return;
-      }
+      if ((e.target as HTMLElement).closest(".post-title-text")) return;
+      if ((e.target as HTMLElement).closest(".post-toggle")) return;
 
       const postItem = summary.closest(".post-item");
       if (postItem) {
         postItem.classList.toggle("expanded");
         const arrow = postItem.querySelector(".post-arrow");
         if (arrow) {
-          arrow.textContent = postItem.classList.contains("expanded")
-            ? "↑"
-            : "↓";
+          arrow.textContent = postItem.classList.contains("expanded") ? "↑" : "↓";
         }
       }
-    });
-  });
-
-  // Search filter
-  const searchInput = document.getElementById("search-input");
-  if (searchInput) {
-    searchInput.addEventListener("input", (e) => {
-      const searchTerm = (e.target as HTMLInputElement).value.toLowerCase();
-      const postItems = document.querySelectorAll(".post-item");
-
-      postItems.forEach((item) => {
-        const title =
-          item.querySelector(".post-title a")?.textContent?.toLowerCase() || "";
-        const excerpt =
-          item.querySelector(".post-excerpt")?.textContent?.toLowerCase() || "";
-
-        if (title.includes(searchTerm) || excerpt.includes(searchTerm)) {
-          (item as HTMLElement).style.display = "block";
-        } else {
-          (item as HTMLElement).style.display = "none";
-        }
-      });
-
-      // Update date group visibility
-      const dateGroups = document.querySelectorAll(".date-group");
-      dateGroups.forEach((dateGroup) => {
-        const visibleItems = dateGroup.querySelectorAll(
-          '.post-item[style*="block"], .post-item:not([style*="none"])'
-        );
-        (dateGroup as HTMLElement).style.display =
-          visibleItems.length > 0 ? "block" : "none";
-      });
-    });
-  }
-
-  // Tag filtering (multi-select)
-  const tagButtons = document.querySelectorAll(".tag-button");
-  const dateGroups = document.querySelectorAll(".date-group");
-
-  function applyFilters() {
-    // Collect active tags
-    const activeTags = Array.from(tagButtons)
-      .filter((btn) => btn.classList.contains("active"))
-      .map((btn) => btn.getAttribute("data-tag"))
-      .filter((tag): tag is string => tag !== null);
-
-    // If no active tags, show everything
-    if (activeTags.length === 0) {
-      dateGroups.forEach((dateGroup) => {
-        const postItems = dateGroup.querySelectorAll(".post-item");
-        postItems.forEach((item) => {
-          (item as HTMLElement).style.display = "block";
-        });
-        (dateGroup as HTMLElement).style.display = "block";
-      });
-      return;
-    }
-
-    // Filter posts: show those matching any active tag
-    dateGroups.forEach((dateGroup) => {
-      const postItems = dateGroup.querySelectorAll(".post-item");
-      let hasVisiblePosts = false;
-
-      postItems.forEach((item) => {
-        const postTags = Array.from(item.querySelectorAll(".post-tag")).map(
-          (tag) => tag.textContent?.toLowerCase().replace(/\s+/g, "-") || ""
-        );
-
-        // Check if post has any active tag
-        const hasMatchingTag = activeTags.some((activeTag) =>
-          postTags.includes(activeTag)
-        );
-
-        if (hasMatchingTag) {
-          (item as HTMLElement).style.display = "block";
-          hasVisiblePosts = true;
-        } else {
-          (item as HTMLElement).style.display = "none";
-        }
-      });
-
-      // Hide date group when no visible posts
-      (dateGroup as HTMLElement).style.display = hasVisiblePosts
-        ? "block"
-        : "none";
-    });
-  }
-
-  tagButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      // Toggle active state
-      button.classList.toggle("active");
-
-      // Apply filters
-      applyFilters();
     });
   });
 </script>
