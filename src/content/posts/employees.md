@@ -1,5 +1,5 @@
 ---
-title: "Modelo 4 — Employees"
+title: "Employees"
 date: "3/15/2025"
 author: "Sebastián Pérez Herrera"
 tags: ["Modelado"]

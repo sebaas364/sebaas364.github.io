@@ -1,5 +1,5 @@
 ---
-title: "Modelo 3 — Comidas a Domicilio"
+title: "Comidas a Domicilio"
 date: "3/1/2025"
 author: "Sebastián Pérez Herrera"
 tags: ["Modelado"]

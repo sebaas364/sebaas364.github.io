@@ -1,5 +1,5 @@
 ---
-title: "Modelo 2 — Residuos Tóxicos"
+title: " Residuos Tóxicos"
 date: "2/15/2025"
 author: "Sebastián Pérez Herrera"
 tags: ["Modelado"]

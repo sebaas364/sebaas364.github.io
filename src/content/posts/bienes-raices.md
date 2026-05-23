@@ -1,5 +1,5 @@
 ---
-title: "Modelo 6 — Bienes Raíces"
+title: "Bienes Raíces"
 date: "4/15/2025"
 author: "Sebastián Pérez Herrera"
 tags: ["Modelado"]

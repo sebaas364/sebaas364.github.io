@@ -1,5 +1,5 @@
 ---
-title: "Modelo 1 — Aerolínea"
+title: " Aerolínea"
 date: "2/1/2025"
 author: "Sebastián Pérez Herrera"
 tags: ["Modelado"]
