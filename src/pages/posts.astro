@@ -54,10 +54,10 @@ const posts = await Promise.all(
 
 // Group posts by category tag
 const panels = [
-  { title: "Modelado",      tag: "Modelado" },
-  { title: "Normalización", tag: "Normalización" },
-  { title: "SQL",           tag: "SQL" },
-  { title: "Proyecto",      tag: "Proyecto" },
+  { title: "SQL",               tag: "SQL" },
+  { title: "PL/SQL Scripts",    tag: "PL/SQL Scripts" },
+  { title: "NoSQL",             tag: "NoSQL" },
+  { title: "Proyecto",          tag: "Proyecto" },
 ];
 
 const postsByTag = (tag: string) => posts.filter(p => p.tags.includes(tag));
