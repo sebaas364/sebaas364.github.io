@@ -17,7 +17,7 @@ export const siteConfig = {
   hero: {
     prefix: "I am", 
     name: "Sebastián Pérez Herrera",
-    intro: "Soy un estudiante de ingeniería de sistemas, de la universidad El Bosque en su quinto semestre, apasionado por aprender cada día nuevos conceptos y tecnologías.\nBienvenido a mi portafolio!",
+    intro: "Soy un estudiante de ingeniería de sistemas, de la universidad El Bosque en su sexto semestre, apasionado por aprender cada día nuevos conceptos y tecnologías.\nBienvenido a mi portafolio!",
     avatar: "/image/Imagen_presentacion.png",
     buttons: {
       contactMe: "Contact Me",
@@ -86,7 +86,7 @@ export const siteConfig = {
   // Posts Page
   posts: {
     title: "Evidencias",
-    subtitle: "Aqui se evidenciara lo realizado durante la clase bases de datos 1.",
+    subtitle: "Aqui se evidenciara lo realizado durante la clase bases de datos 2.",
     searchPlaceholder: "Search posts...",
   },
   
