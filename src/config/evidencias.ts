@@ -435,14 +435,20 @@ export const scripts: Script[] = [
 
   // ============================== NoSQL ==============================
   {
-    slug: "taller-mql",
+    slug: "taller-nosql",
     panel: "NoSQL",
-    title: "Taller MQL: consultas en MongoDB",
+    title: "Taller NoSQL: MongoDB",
     summary:
-      "Consultas con find y filtros ($and, $or, $all, $size, expresiones regulares), pipelines de agregación ($group, $lookup, $switch), operaciones de actualización y borrado, e índices sobre la base de ejemplo sample_mflix.",
+      "Consultas MQL sobre la base de ejemplo sample_mflix con find, filtros, pipelines de agregación ($group, $lookup, $switch), actualizaciones, borrados e índices; y diseño de modelos documentales para una plataforma de domicilios y una red social.",
     folder: "tallerNOSQL_Lozano_Perez_Poveda",
     file: "taller_Lozano_Perez_Poveda.js",
-    extras: [{ label: "Documento del taller (PDF)", file: "taller_Lozano_Perez_Poveda.pdf" }],
+    extras: [
+      { label: "Documento del taller (PDF)", file: "taller_Lozano_Perez_Poveda.pdf" },
+      { label: "Caso 1: diagrama", file: "Caso1.jpeg" },
+      { label: "Caso 1: documentos JSON", file: "rappi_documentos.json" },
+      { label: "Caso 3: diagrama", file: "Caso3.jpeg" },
+      { label: "Caso 3: documentos JSON", file: "red_social.json" },
+    ],
     exercises: [
       {
         num: "1",
@@ -527,22 +533,6 @@ export const scripts: Script[] = [
         description:
           "Compara con explain('executionStats') la consulta del punto 1 antes y después de crear un índice compuesto en orden igualdad, orden y rango, y luego elimina el índice.",
       },
-    ],
-  },
-  {
-    slug: "modelado-nosql",
-    panel: "NoSQL",
-    title: "Modelado de documentos en MongoDB",
-    summary:
-      "Diseño de modelos documentales para dos casos: una plataforma de domicilios y una red social, cada uno con su diagrama y documentos JSON de ejemplo.",
-    folder: "tallerNOSQL_Lozano_Perez_Poveda",
-    extras: [
-      { label: "Caso 1: diagrama", file: "Caso1.jpeg" },
-      { label: "Caso 1: documentos JSON", file: "rappi_documentos.json" },
-      { label: "Caso 3: diagrama", file: "Caso3.jpeg" },
-      { label: "Caso 3: documentos JSON", file: "red_social.json" },
-    ],
-    exercises: [
       {
         num: "Caso 1",
         title: "Plataforma de domicilios",
