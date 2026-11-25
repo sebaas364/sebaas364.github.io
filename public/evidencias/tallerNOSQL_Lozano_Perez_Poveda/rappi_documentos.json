@@ -1,0 +1,59 @@
+{
+  "cliente": [
+    {
+      "_id": "cli_001",
+      "nombre": "Laura Gómez",
+      "telefonos": ["3001234567", "6012345678"]
+    }
+  ],
+  "repartidor": [
+    {
+      "_id": "rep_001",
+      "nombre": "Carlos Ramírez"
+    }
+  ],
+  "producto": [
+    {
+      "_id": { "$oid": "665f1a2b3c4d5e6f7a8b9c01" },
+      "nombre": "Hamburguesa Doble Carne",
+      "tamanio": "grande",
+      "adiciones": ["queso extra", "tocineta", "huevo"],
+      "nivel_picante": "medio",
+      "apto_vegano": false
+    }
+  ],
+  "resenia": [
+    {
+      "fecha": "2026-10-30",
+      "puntaje": 4.5,
+      "id_restaurante": "res_001"
+    }
+  ],
+  "Restaurante": [
+    {
+      "_id": "res_001",
+      "nombre": "Burger Station",
+      "ciudad": "Bogotá",
+      "resenias_recientes": [
+        { "fecha": "2026-10-30", "puntaje": 4.5 },
+        { "fecha": "2026-10-28", "puntaje": 5 },
+        { "fecha": "2026-10-25", "puntaje": 3.5 }
+      ]
+    }
+  ],
+  "pedido": [
+    {
+      "id_cliente": "cli_001",
+      "id_restaurante": "res_001",
+      "id_producto": "665f1a2b3c4d5e6f7a8b9c01",
+      "id_repartidor": "rep_001",
+      "Menu": [
+        { "nombre": "Hamburguesa Doble Carne", "cantidad": 2, "precio_unitario": 18000 },
+        { "nombre": "Papas criollas", "cantidad": 1, "precio_unitario": 9000 }
+      ],
+      "subtotal": 45000,
+      "total": 49000,
+      "fecha": "2026-11-03"
+    }
+  ]
+}

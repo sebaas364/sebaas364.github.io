@@ -1,0 +1,75 @@
+{
+  "cuenta": [
+    {
+      "_id": "cuenta_123",
+      "nombre": "Sebastián",
+      "siguiendo": ["cuenta_5", "cuenta_8"],
+      "seguidores": ["cuenta_8"]
+    },
+    {
+      "_id": "cuenta_5",
+      "nombre": "Ana Gómez",
+      "siguiendo": ["cuenta_8"],
+      "seguidores": ["cuenta_123", "cuenta_8", "cuenta_9"]
+    }
+  ],
+  "publicacion": [
+    {
+      "_id": "pub_1",
+      "tipo": "foto",
+      "autor": {
+        "_id": "cuenta_5",
+        "nombre": "Ana Gómez"
+      },
+      "fecha": { "$date": "2026-11-03T15:30:00Z" },
+      "comentarios_recientes": [
+        {
+          "comentarioId": "c_2",
+          "autorNombre": "Luis",
+          "texto": "Qué buena foto",
+          "fecha": { "$date": "2026-11-03T18:10:00Z" }
+        },
+        {
+          "comentarioId": "c_1",
+          "autorNombre": "Ana",
+          "texto": "Me encantó",
+          "fecha": { "$date": "2026-11-03T16:00:00Z" }
+        }
+      ],
+      "metricas": {
+        "likes": 120,
+        "comentarios": 2,
+        "compartidos": 15,
+        "total_interacciones": 137
+      }
+    }
+  ],
+  "comentario": [
+    {
+      "_id": "c_1",
+      "publicacionId": "pub_1",
+      "autorNombre": "Ana",
+      "texto": "Me encantó",
+      "fecha": { "$date": "2026-11-03T16:00:00Z" }
+    },
+    {
+      "_id": "c_2",
+      "publicacionId": "pub_1",
+      "autorNombre": "Luis",
+      "texto": "Qué buena foto",
+      "fecha": { "$date": "2026-11-03T18:10:00Z" }
+    }
+  ],
+  "seguidores_extra": [
+    {
+      "cuenta_id": "cuenta_5",
+      "pagina": "1",
+      "seguidores": ["cuenta_201", "cuenta_202", "cuenta_203", "cuenta_204"]
+    },
+    {
+      "cuenta_id": "cuenta_5",
+      "pagina": "2",
+      "seguidores": ["cuenta_205", "cuenta_206", "cuenta_207"]
+    }
+  ]
+}
