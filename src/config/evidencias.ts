@@ -235,7 +235,7 @@ export const scripts: Script[] = [
     panel: "PL/SQL Scripts",
     title: "Práctica PL/SQL",
     summary:
-      "Cursor explícito que clasifica salarios del departamento 80 en ALTO, MEDIO y BAJO; procedimiento sp_subir_salario con validaciones y tope del cargo; función fn_costo_empleado que calcula el costo anual; y trigger de auditoría que impide bajar salarios.",
+      "Cursor explícito que clasifica salarios del departamento 80 en ALTO, MEDIO y BAJO; procedimiento sp_subir_salario con validaciones y tope del cargo; función fn_costo_empleado que calcula el costo anual; trigger de auditoría que impide bajar salarios; y cursores parametrizados con manejo de una excepción propia.",
     folder: "",
     file: "plsql_practica.sql",
     exercises: [
@@ -262,6 +262,18 @@ export const scripts: Script[] = [
         title: "Auditoría de salarios con trigger",
         description:
           "Crea la tabla auditoria_salarios y el trigger trg_audit_salario, que registra cada cambio de salario, impide que el salario baje y marca el cambio como AUMENTO GRANDE o AUMENTO NORMAL.",
+      },
+      {
+        num: "5",
+        title: "Empleados con su manager y salario con comisión",
+        description:
+          "Bloque anónimo con un cursor parametrizado por departamento que une la tabla de empleados consigo misma para obtener el nombre del manager, y muestra el salario y el salario con comisión, o 'SIN COMISION' si el empleado no tiene.",
+      },
+      {
+        num: "6",
+        title: "Excepción propia para departamentos inexistentes",
+        description:
+          "Recorre los departamentos 80 y 90, valida que cada uno exista y, si no, lanza la excepción propia e_sin_departamento y la captura en un bloque interno, para que el error de un departamento no detenga el resto del reporte.",
       },
     ],
   },

@@ -180,3 +180,95 @@ BEGIN
     VALUES (:OLD.employee_id, USER, SYSDATE, :OLD.salary, :NEW.salary, vv_tipo);
 END;
 /
+
+
+-- EJERCICIO 5
+--Todos los empleados que trabajan en el departamento 80 y 90, seleccionar nombre del empleado, nombre del manager, el sueldo, y salario * comision
+DECLARE
+    CURSOR cur_empleados_80_90(param_depto NUMBER) IS
+        SELECT e.first_name,
+               m.first_name AS  manager_name,
+               e.salary,
+               e.commission_pct
+        FROM HR.EMPLOYEES e
+        LEFT JOIN HR.EMPLOYEES m ON e.manager_id = m.employee_id
+        WHERE e.department_id = param_depto;
+
+    v_prod cur_empleados_80_90%ROWTYPE;
+
+    vv_comision_salario VARCHAR2(50);
+BEGIN
+    OPEN cur_empleados_80_90(80);
+    LOOP
+        FETCH cur_empleados_80_90 INTO v_prod;
+        EXIT WHEN cur_empleados_80_90%NOTFOUND ;
+
+        vv_comision_salario := CASE
+                                    WHEN v_prod.commission_pct IS NOT NULL THEN TO_CHAR(v_prod.salary+(v_prod.salary*v_prod.commission_pct))
+                                    ELSE 'SIN COMISION'
+                                END;
+        DBMS_OUTPUT.PUT_LINE(RPAD('nombre: '||v_prod.first_name,20)||RPAD('manager: '||v_prod.manager_name,20)||RPAD('salario: '||v_prod.salary,20)||RPAD('salario con comision: '||vv_comision_salario,30));
+    END LOOP;
+    CLOSE cur_empleados_80_90;
+END;
+/
+
+
+-- EJERCICIO 6
+--crear una excepcion cuando el valor del departamento no exista (e_sin_departamento)
+DECLARE
+    CURSOR cur_empleados(param_depto NUMBER) IS
+        SELECT e.first_name,
+               m.first_name AS manager_name,
+               e.salary,
+               e.commission_pct
+        FROM   HR.employees e
+        LEFT JOIN HR.employees m ON e.manager_id = m.employee_id
+        WHERE  e.department_id = param_depto;
+
+    v_emp               cur_empleados%ROWTYPE;
+    vv_comision_salario VARCHAR2(50);
+    vn_existe           NUMBER;
+    e_sin_departamento  EXCEPTION;
+BEGIN
+    FOR vn_id_departamento IN (SELECT 80 AS id FROM DUAL
+                               UNION ALL
+                               SELECT 90 FROM DUAL) LOOP
+        BEGIN
+            -- Validar que el departamento exista
+            SELECT COUNT(*) INTO vn_existe
+            FROM   HR.departments
+            WHERE  department_id = vn_id_departamento.id;
+
+            IF vn_existe = 0 THEN
+                RAISE e_sin_departamento;
+            END IF;
+
+            DBMS_OUTPUT.PUT_LINE('--- Departamento ' || vn_id_departamento.id || ' ---');
+
+            OPEN cur_empleados(vn_id_departamento.id);
+            LOOP
+                FETCH cur_empleados INTO v_emp;
+                EXIT WHEN cur_empleados%NOTFOUND;
+
+                vv_comision_salario := CASE
+                    WHEN v_emp.commission_pct IS NOT NULL
+                        THEN TO_CHAR(v_emp.salary * (1 + v_emp.commission_pct))
+                    ELSE 'SIN COMISION'
+                END;
+
+                DBMS_OUTPUT.PUT_LINE(
+                    RPAD('nombre: '  || v_emp.first_name,   20) ||
+                    RPAD('manager: ' || v_emp.manager_name, 20) ||
+                    RPAD('salario: ' || v_emp.salary,       20) ||
+                    RPAD('con comision: ' || vv_comision_salario, 30));
+            END LOOP;
+            CLOSE cur_empleados;
+
+        EXCEPTION
+            WHEN e_sin_departamento THEN
+                DBMS_OUTPUT.PUT_LINE('Departamento ' || vn_id_departamento.id || ' no existe');
+        END;
+    END LOOP;
+END;
+/
