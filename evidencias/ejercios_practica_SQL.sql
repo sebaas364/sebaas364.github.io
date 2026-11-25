@@ -1,3 +1,4 @@
+-- EJERCICIO 1
 --Lista el nombre completo de todos los empleados, su puesto, el nombre de su departamento, la ciudad y el país donde trabaja, ordenado por país y luego por apellido.
 SELECT
     e.first_name || ' ' || e.last_name AS nombre_completo,
@@ -20,7 +21,8 @@ ORDER BY
     
     
 
-SELECT E.FIRST_NAME AS NOMBRE, 
+-- EJERCICIO 1 (versión alternativa con nombre y apellido por separado)
+SELECT E.FIRST_NAME AS NOMBRE,
     E.LAST_NAME AS APELLIDO,
     T.JOB_TITLE AS PUESTO,
     D.DEPARTMENT_NAME AS DEPARTAMENTO,
@@ -40,6 +42,7 @@ ORDER BY
     E.LAST_NAME ASC;
     
     
+-- EJERCICIO 2
 -- Lista los países que tienen empleados trabajando en más de una ciudad distinta.    
 SELECT 
     c.country_name,
@@ -55,8 +58,8 @@ GROUP BY c.country_name
 HAVING COUNT(DISTINCT l.city)>1;
 
 
-
-SELECT 
+-- EJERCICIO 2 (comprobación: detalle de los países que empiezan por 'Ca')
+SELECT
     *
 FROM HR.COUNTRIES c
 INNER JOIN HR.LOCATIONS l
@@ -69,6 +72,7 @@ WHERE c.country_name LIKE 'Ca%';
 
 
 
+-- EJERCICIO 3
 --Muestra los empleado que trabajan en un departamento cuyo manager directo, no es el el manager del departamento.
 SELECT
    e.first_name,
@@ -79,6 +83,7 @@ LEFT JOIN HR.DEPARTMENTS d
     ON e.department_id = d.department_id
 WHERE d.manager_id != e.manager_id OR e.manager_id IS NULL OR d.manager_id IS NULL;
 
+-- EJERCICIO 4
 --Obtén el listado de departamentos que no tienen ningún empleado asignado
 SELECT
     d.department_name
@@ -88,6 +93,7 @@ LEFT OUTER JOIN HR.EMPLOYEES e
 WHERE e.employee_id IS NULL;
 
 
+-- EJERCICIO 5
 --Encuentra los empleados cuyo salario es superior al salario promedio de su propio departamento.
 SELECT
    e.first_name,
@@ -114,6 +120,7 @@ INNER JOIN HR.EMPLOYEES e
     ON e.department_id = d.department_id
 GROUP BY d.department_id;
 */
+-- EJERCICIO 4 (versión alternativa mostrando todas las columnas)
 SELECT
     *
 FROM HR.DEPARTMENTS d

@@ -1,0 +1,205 @@
+---
+import "../../styles/home.css";
+import "../../styles/post-detail.css";
+import "../../styles/page-transitions.css";
+import Navigation from "../../components/Navigation.astro";
+import Footer from "../../components/Footer.astro";
+import { scripts, folderUrl, fileUrl, type Script } from "../../config/evidencias";
+
+export function getStaticPaths() {
+  return scripts.map((script) => ({
+    params: { slug: script.slug },
+    props: { script },
+  }));
+}
+
+interface Props {
+  script: Script;
+}
+
+const { script } = Astro.props;
+const panelLabel = script.panel === "PL/SQL Scripts" ? "PL/SQL" : script.panel;
+---
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{script.title} - Evidencias</title>
+    <script>
+      if ("scrollRestoration" in history) {
+        history.scrollRestoration = "manual";
+      }
+      window.scrollTo(0, 0);
+    </script>
+  </head>
+  <body>
+    <Navigation />
+
+    <main class="post-detail-page">
+      <div class="post-detail-container page-content">
+        <div class="post-header-card post-header-animate">
+          <h1 class="post-detail-title">{script.title}</h1>
+          <div class="post-detail-tags">
+            <span class="post-detail-tag">{panelLabel}</span>
+            <span class="post-detail-tag">{script.exercises.length} ejercicios</span>
+          </div>
+          <p class="ev-summary">{script.summary}</p>
+
+          <div class="ev-repo-links">
+            <a href={folderUrl(script)} target="_blank" rel="noopener" class="ev-repo-button">
+              Ver carpeta en el repositorio ↗
+            </a>
+            {script.file && (
+              <a href={fileUrl(script, script.file)} target="_blank" rel="noopener" class="ev-file-link">
+                {script.file}
+              </a>
+            )}
+            {script.extras?.map((extra) => (
+              <a href={fileUrl(script, extra.file)} target="_blank" rel="noopener" class="ev-file-link">
+                {extra.label}
+              </a>
+            ))}
+          </div>
+
+          <div class="post-detail-meta">
+            <a href="/posts" class="post-back-button"> ← Volver a Evidencias </a>
+          </div>
+        </div>
+
+        <div class="post-content post-content-animate">
+          <ol class="ev-list">
+            {script.exercises.map((ex) => (
+              <li class="ev-item" id={`ejercicio-${ex.num.replace(/\s+/g, "-").toLowerCase()}`}>
+                <span class="ev-num">{ex.num}</span>
+                <div class="ev-body">
+                  <h2 class="ev-title">{ex.title}</h2>
+                  <p class="ev-desc">{ex.description}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </div>
+    </main>
+
+    <Footer />
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        window.scrollTo(0, 0);
+        [".page-content", ".post-header-animate", ".post-content-animate"].forEach((sel) => {
+          const el = document.querySelector(sel);
+          if (el) requestAnimationFrame(() => el.classList.add("visible"));
+        });
+      });
+      window.addEventListener("pageshow", (event) => {
+        if (event.persisted) window.scrollTo(0, 0);
+      });
+    </script>
+  </body>
+</html>
+
+<style>
+  .ev-summary {
+    color: #4a5568;
+    line-height: 1.6;
+    margin: 0 0 1.25rem;
+  }
+
+  .ev-repo-links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.6rem 1rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .ev-repo-button {
+    display: inline-block;
+    padding: 0.55rem 1.1rem;
+    border-radius: 999px;
+    background: #76cfc5;
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: background 0.2s ease;
+  }
+
+  .ev-repo-button:hover {
+    background: #5bc0ae;
+  }
+
+  .ev-file-link {
+    color: #5bc0ae;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    word-break: break-all;
+  }
+
+  .ev-file-link:hover {
+    text-decoration: underline;
+  }
+
+  .ev-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 !important;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .ev-item {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    margin: 0 !important;
+    padding-left: 1rem;
+    border-left: 3px solid #76cfc5;
+    scroll-margin-top: 140px;
+  }
+
+  .ev-num {
+    flex-shrink: 0;
+    min-width: 3.2rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 8px;
+    background: rgba(255, 180, 0, 0.12);
+    color: #b07d00;
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-align: center;
+  }
+
+  .ev-body {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .post-detail-page .post-content .ev-title {
+    font-size: 1.05rem !important;
+    font-weight: 600 !important;
+    color: #2d3748 !important;
+    margin: 0 0 0.35rem !important;
+    line-height: 1.4 !important;
+  }
+
+  .post-detail-page .post-content .ev-desc {
+    font-size: 0.95rem;
+    color: #718096;
+    line-height: 1.6;
+    margin: 0 !important;
+  }
+
+  @media (max-width: 600px) {
+    .ev-item {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+  }
+</style>

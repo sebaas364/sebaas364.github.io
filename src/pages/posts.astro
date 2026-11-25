@@ -7,7 +7,7 @@ import Navigation from "../components/Navigation.astro";
 import Footer from "../components/Footer.astro";
 import { siteConfig } from "../config/site";
 import { postImages, defaultPostImage } from "../config/posts-images";
-import { ejercicios } from "../config/evidencias";
+import { scriptsByPanel } from "../config/evidencias";
 
 // Get all posts from content collection
 const allPosts = (await getCollection("posts")) as CollectionEntry<"posts">[];
@@ -62,7 +62,6 @@ const panels = [
 ];
 
 const postsByTag = (tag: string) => posts.filter(p => p.tags.includes(tag));
-const ejerciciosByTag = (tag: string) => ejercicios.filter(e => e.panel === tag);
 ---
 
 <html lang="en">
@@ -107,15 +106,16 @@ const ejerciciosByTag = (tag: string) => ejercicios.filter(e => e.panel === tag)
 
                   <div class="post-details">
                     <div class="panel-posts-list">
-                      {ejerciciosByTag(panel.tag).map((ej) => (
+                      {scriptsByPanel(panel.tag).map((script) => (
                         <div class="panel-post-entry">
                           <div class="panel-post-header">
-                            <a href={ej.url} target="_blank" rel="noopener" class="panel-post-title">
-                              {ej.title}
+                            <a href={`/evidencias/${script.slug}/`} class="panel-post-title">
+                              {script.title}
                             </a>
+                            <span class="panel-post-readtime">{script.exercises.length} ejercicios</span>
                           </div>
-                          <p class="panel-post-excerpt">{ej.description}</p>
-                          <a href={ej.url} target="_blank" rel="noopener" class="panel-post-link">Ver ejercicio →</a>
+                          <p class="panel-post-excerpt">{script.summary}</p>
+                          <a href={`/evidencias/${script.slug}/`} class="panel-post-link">Ver ejercicios →</a>
                         </div>
                       ))}
                       {postsByTag(panel.tag).map((post) => (
@@ -130,7 +130,7 @@ const ejerciciosByTag = (tag: string) => ejercicios.filter(e => e.panel === tag)
                           <a href={`/posts/${post.slug}`} class="panel-post-link">Ver evidencia →</a>
                         </div>
                       ))}
-                      {postsByTag(panel.tag).length === 0 && ejerciciosByTag(panel.tag).length === 0 && (
+                      {postsByTag(panel.tag).length === 0 && scriptsByPanel(panel.tag).length === 0 && (
                         <p class="panel-empty">Contenido próximamente.</p>
                       )}
                     </div>

@@ -1,5 +1,6 @@
 SET SERVEROUTPUT ON;
 
+-- EJERCICIO 1
 --Crea un bloque anónimo de PL/SQL con un cursor explicito que traiga los empleados del departamento 80 
 --y muestre su nombre completo, cargo y salario.y lo clasifique comparando su salario con el 
 --promedio del departamento: "ALTO" si gana más del 120% del promedio, "MEDIO" si está entre el 80% y el 120%, y "BAJO" si gana menos del 80%.
@@ -55,6 +56,7 @@ BEGIN
 END;
 /
 
+-- EJERCICIO 2
 --Crea un procedimiento sp_subir_salario con parametros p_emp_id, p_porcentaje 
 --que aumente el salario de un empleado según el porcentaje indicado. 
 --Debe validar los datos de entrada, respetar el tope del puesto.
@@ -95,6 +97,7 @@ EXCEPTION
 END sp_subir_salario;
 /
 
+-- EJERCICIO 3
 --Crea una función fn_costo_empleado que reciba un employee_id y 
 --devuelva la ganancia anual del empleado, es decir, 
 --su salario por 12 más la comisión (si tiene), más un 10% adicional si lleva más de 15 años en la empresa. 
@@ -140,6 +143,7 @@ FROM   employees
 WHERE  department_id = 80
 
 
+-- EJERCICIO 4
 --Crea una tabla auditoria_salarios (con id, employee_id,
 --usuario, fecha, salario_anterior, salario_nuevo y tipo de cambio) y un trigger
 --trg_audit_salario que, cada vez que se actualice el salario de un empleado, registre el cambio ahí.

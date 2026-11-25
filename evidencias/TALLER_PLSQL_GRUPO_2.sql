@@ -1258,7 +1258,7 @@ END TRG_V_STOCK_IO;
 -- PARTE 6 — CASO INTEGRADOR                                   (5 puntos / 45 min)
 --==============================================================================
 
--------------------------------------------------------------------------------
+------------------------------------------------------------------- 6.1 (5 pts)
 -- PKG_VENTAS
 -- Construya un PAQUETE que exponga el procedimiento SP_FACTURAR_PEDIDO, el cual,
 -- para un pedido en estado BORRADOR, debe:
