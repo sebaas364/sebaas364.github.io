@@ -435,6 +435,93 @@ export const scripts: Script[] = [
 
   // ============================== NoSQL ==============================
   {
+    slug: "practica-mql-airbnb",
+    panel: "NoSQL",
+    title: "Práctica MQL: sample_airbnb",
+    summary:
+      "Operaciones CRUD en MongoDB sobre la colección listingsAndReviews: inserciones con objetos anidados y arrays, validación de la unicidad del _id, y consultas con filtros, proyecciones, operadores de comparación, regex, arrays, ordenamiento y límite.",
+    folder: "",
+    file: "practica_MQL_sample_airbnb.js",
+    exercises: [
+      {
+        num: "1",
+        title: "insertOne básico",
+        description:
+          "Inserta un nuevo listing \"Cozy Cabin Retreat\" con summary, property_type \"Cabin\" y precio 150.",
+      },
+      {
+        num: "2",
+        title: "insertOne con objeto anidado",
+        description:
+          "Inserta un listing con una dirección anidada que incluye el país (Chile) y el mercado (Santiago).",
+      },
+      {
+        num: "3",
+        title: "insertMany simple",
+        description:
+          "Inserta dos listings en una sola operación: \"Studio de Arte Urbano\" (80) y \"Loft Minimalista\" (110).",
+      },
+      {
+        num: "4",
+        title: "insertMany con arrays",
+        description:
+          "Inserta un listing con un array amenities de varios elementos (Wifi, Kitchen, Free parking, Air conditioning).",
+      },
+      {
+        num: "5",
+        title: "Validación de _id",
+        description:
+          "Busca un listing existente e intenta insertar otro con el mismo _id, para comprobar el error de llave duplicada que garantiza la unicidad del _id.",
+      },
+      {
+        num: "6",
+        title: "find por país",
+        description: "Consulta los listings ubicados en Brazil filtrando por el campo anidado address.country.",
+      },
+      {
+        num: "7",
+        title: "find con $gt",
+        description: "Encuentra los listings con más de 5 camas y proyecta solo el nombre y el número de reseñas.",
+      },
+      {
+        num: "8",
+        title: "find con $lt",
+        description: "Encuentra los listings con precio menor a 75 y proyecta nombre, precio y tipo de propiedad.",
+      },
+      {
+        num: "9",
+        title: "find con $and y objeto anidado",
+        description: "Busca los listings de tipo Apartment ubicados en el mercado de New York.",
+      },
+      {
+        num: "10",
+        title: "find con $in",
+        description: "Encuentra los listings cuyo tipo de propiedad es House o Condominium.",
+      },
+      {
+        num: "11",
+        title: "find con regex",
+        description:
+          "Busca los listings cuyo nombre contiene la palabra \"Luxury\" sin distinguir mayúsculas de minúsculas.",
+      },
+      {
+        num: "12",
+        title: "find en array",
+        description: "Encuentra los listings que incluyen \"Heating\" dentro de su array de amenities.",
+      },
+      {
+        num: "13",
+        title: "find con $size",
+        description: "Encuentra los listings que tienen exactamente 20 amenities.",
+      },
+      {
+        num: "14",
+        title: "find con sort y limit",
+        description: "Muestra los 10 listings más caros con su nombre, precio y país, ordenados de mayor a menor precio.",
+      },
+    ],
+  },
+  {
     slug: "taller-nosql",
     panel: "NoSQL",
     title: "Taller NoSQL: MongoDB",
